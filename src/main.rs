@@ -72,7 +72,22 @@ impl OfficeDays {
     }
 }
 
+fn print_help() {
+    println!(
+        "OfficeDays v0.2.3\nUsage: officedays [OPTIONS]
 
+Options:
+    -e                  Edit the configuration file for the current year
+    -h                  Show this help message
+    <no options>        Run the program with the configuration file for the current year
+
+Configuration File:
+    The program looks for the configuration file in:
+        macOS: ~/Library/Application Support/officedays/<year>.toml
+        Linux: ~/.config/officedays/<year>.toml
+    "
+    );
+}
 
 fn edit_config(config_path: &std::path::Path) {
     let editor = std::env::var("EDITOR").unwrap_or_else(|_| "nano".to_string());
