@@ -84,8 +84,7 @@ Options:
 Configuration File:
     The program looks for the configuration file in:
         macOS: ~/Library/Application Support/officedays/<year>.toml
-        Linux: ~/.config/officedays/<year>.toml
-    "
+        Linux: ~/.config/officedays/<year>.toml"
     );
 }
 
