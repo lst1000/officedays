@@ -2,7 +2,7 @@
 name = "officedays"
 version = "0.3.0"
 edition = "2021"
-authors = ["Laurence Stock-Tully <laurence@lst.me.uk>"]
+authors = ["Laurence Stock-Tully"]
 description = "A CLI tool for hybrid workers to track and project required office attendance for each quarter"
 readme = "README.md"
 license = "MIT"
