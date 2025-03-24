@@ -1,0 +1,24 @@
+required_quarterly_attendance = 36
+
+[bank_holidays]
+q1 = [
+  "2025-01-01"
+]
+q2 = []
+q3 = []
+q4 = [
+  "2025-12-25",
+  "2025-12-26"
+]
+
+[leave]
+q1 = []
+q2 = [] 
+q3 = []
+q4 = []
+
+[office_days]
+q1 = []
+q2 = []
+q3 = []
+q4 = []

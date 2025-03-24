@@ -1,0 +1,36 @@
+.TH OFFICEDAYS 1
+.SH NAME
+officedays \- calculate the number of days required to work in an office for hybrid workers
+.SH SYNOPSIS
+.B officedays
+[\fB\-eh\fR]
+.SH DESCRIPTION
+.B officedays
+reads a TOML file and calculates the number of days required to be worked in the office. This assumes that any leave or bank holiday counts as a day in the office. Calculations are made on a quarterly basis, using the number of required office days per quarter as specified in the TOML file.
+
+The program automatically determines the current quarter, calculates the days worked so far, and provides a projection based on the current date.
+.SH OPTIONS
+.TP
+.BR \-e
+Edit the TOML file for the current year using \fB$EDITOR\fR (or \fInano\fR if \fB$EDITOR\fR is unset).
+If a TOML file doesn't exist, or one doesn't exist for the current year, this creates a new file and exits.
+.TP
+.BR \-h
+Show the help message.
+.TP
+.BR No\ Arguments
+Running the program with no arguments will look for a TOML file matching the current year, read it, and display calculations for the current quarter.
+.SH ENVIRONMENT
+\fB$EDITOR\fR is used when editing the TOML file with the \fB-e\fR option. If unset, the program defaults to using \fInano\fR.
+.SH FILES
+The TOML configuration file is stored in the system's standard config directory (e.g. \fB$XDG_CONFIG_HOME/officedays\fR or \fB~/Library/Application Support/officedays\fR). It is named \fIYYYY.toml\fR, where \fIYYYY\fR is the current year.
+
+Each file includes:
+- required office days per quarter
+- bank holidays
+- booked leave
+- actual or intended in-office days
+
+If future dates are entered, \fBofficedays\fR will also calculate a projected total for the quarter.
+.SH AUTHOR
+Written by Laurence Stock-Tully <https://github.com/lst1000>

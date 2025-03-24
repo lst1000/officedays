@@ -4,6 +4,8 @@ use std::process::Command;
 use serde::Deserialize;
 use chrono::{Datelike, NaiveDate};
 
+const EXAMPLE_TOML: &str = include_str!("../example.toml");
+
 #[derive(Debug, Deserialize)]
 struct Config {
     required_quarterly_attendance: u8,
@@ -74,7 +76,7 @@ impl OfficeDays {
 
 fn print_help() {
     println!(
-        "OfficeDays v0.2.3\nUsage: officedays [OPTIONS]
+        "OfficeDays v0.3.0\nUsage: officedays [OPTIONS]
 
 Options:
     -e                  Edit the configuration file for the current year
@@ -98,6 +100,20 @@ fn edit_config(config_path: &std::path::Path) {
     if !status.success() {
         eprintln!("Failed to Edit the Configuration File");
     }
+}
+
+fn create_config() -> Result<(), Box<dyn std::error::Error>> {
+    let year = chrono::Local::now().year();
+    let config_dir = dirs::config_dir().expect("Configuration Directory Not Found").join("officedays");
+    let config_file = config_dir.join(format!("{}.toml", year));
+
+    fs::create_dir_all(&config_dir)?;
+    
+    if !config_file.exists() {
+        fs::write(&config_file, EXAMPLE_TOML)?;
+        println!("\x1b[1mCreated config at {}\x1b[0m", config_file.display());
+    }
+    std::process::exit(0);
 }
 
 fn config_search() -> PathBuf {
@@ -168,7 +184,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             if !config_path.exists() {
                 eprintln!("Configuration File Not Found: {}", config_path.display());
-                std::process::exit(1);
+                create_config()?;
             }
             edit_config(&config_path);
             return Ok(());

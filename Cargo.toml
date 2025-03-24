@@ -1,7 +1,16 @@
 [package]
 name = "officedays"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2021"
+authors = ["Laurence Stock-Tully <laurence@lst.me.uk>"]
+description = "A CLI tool for hybrid workers to track and project required office attendance for each quarter"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/lst1000/officedays"
+homepage = "https://github.com/lst1000/officedays"
+keywords = ["cli", "office", "hybrid", "tracker", "wfh", "work"]
+categories = ["command-line-utilities"]
+include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE", "example.toml", "man/officedays.1"]
 
 [dependencies]
 dirs = "5.0.1"
