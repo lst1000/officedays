@@ -76,7 +76,7 @@ impl OfficeDays {
 
 fn print_help() {
     println!(
-        "OfficeDays v0.3.1\nUsage: officedays [OPTIONS]
+        "OfficeDays v0.3.2\nUsage: officedays [OPTIONS]
 
 Options:
     -e                  Edit the configuration file for the current year
