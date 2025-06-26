@@ -76,7 +76,7 @@ impl OfficeDays {
 
 fn print_help() {
     println!(
-        "OfficeDays v0.3.2\nUsage: officedays [OPTIONS]
+        "OfficeDays v0.3.3\nUsage: officedays [OPTIONS]
 
 Options:
     -e                  Edit the configuration file for the current year
@@ -140,15 +140,9 @@ fn current_quarter() -> String {
 fn days_required(config: &Config, quarter: &str) -> Result<u8, String> {
     let required_days = config.required_quarterly_attendance;
 
-    let bank_holidays = match config.bank_holidays.quarter_dates(quarter) {
-        Some(dates) => dates,
-        None => vec![],
-    };
+    let bank_holidays = config.bank_holidays.quarter_dates(quarter).unwrap_or_default();
 
-    let leave_days = match config.leave.quarter_dates(quarter) {
-        Some(dates) => dates,
-        None => vec![],
-    };
+    let leave_days = config.leave.quarter_dates(quarter).unwrap_or_default();
 
     let days_off = bank_holidays.len() as u8 + leave_days.len() as u8;
 
@@ -170,7 +164,7 @@ fn days_worked(config: &Config, quarter: &str, today: Option<NaiveDate>) -> Resu
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = std::env::args().collect();
-    let valid_args = vec!["-e", "-h"];
+    let valid_args = ["-e", "-h"];
     let config_path = config_search();
 
     if args.len() > 1 {
@@ -225,9 +219,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     if days_projected > 0 {
         println!("\x1b[31m{:<20} {:>4}\x1b[0m", "Days Projected", days_projected);
-        return Ok(());
+        Ok(())
     } else {
         println!("\x1b[32m{:<20} {:>4}\x1b[0m", "Days Projected", days_projected);
-        return Ok(());
+        Ok(())
     }
 }
