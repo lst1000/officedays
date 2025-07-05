@@ -76,7 +76,7 @@ impl OfficeDays {
 
 fn print_help() {
     println!(
-        "OfficeDays v0.3.3\nUsage: officedays [OPTIONS]
+        "OfficeDays v0.3.4\nUsage: officedays [OPTIONS]
 
 Options:
     -e                  Edit the configuration file for the current year
@@ -174,8 +174,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             print_help();
             return Ok(());
         } else if arg == "-e" {
-            let config_path = config_search();
-
             if !config_path.exists() {
                 eprintln!("Configuration File Not Found: {}", config_path.display());
                 create_config()?;
