@@ -1,6 +1,6 @@
 # officedays
 
-**officedays** is a simple command-line tool that calculates how many days need to be worked in the office each quarter for hybrid workers.
+**officedays** is a command-line tool that calculates how many days need to be worked in the office each quarter for hybrid workers.
 
 It reads from a yearly TOML configuration file and takes into account bank holidays and booked leave, assuming they count as days worked in the office. If you include future planned office days, it also provides a projection to see whether you’re on track to meet your target.
 
